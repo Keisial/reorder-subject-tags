@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -eu
+
+PRIMARY="$1"
+SECONDARY="$2"
+
+sed '0,/^\r\?$/ { /^Subject:/I {
+	/\['"$SECONDARY #"'[0-9]*\]/ {
+		/\['"$PRIMARY #"'[0-9]*\]/! {
+			s/:/: ['"$PRIMARY"' #0]/
+		}
+		/\['"$PRIMARY #"'[0-9]*\]/ {
+			'"s/\(\[$SECONDARY #[0-9]*\]\)\(.*\?\)\(\[$PRIMARY #[0-9]*\]\)/\3\2\1/"'
+		}
+	}
+ } }'

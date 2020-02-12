@@ -1,0 +1,10 @@
+reorder-tags is a tiny program designed to reorder the tags
+given in email subjects, to ensure a given order.
+
+Tags are expected to be in the form "[<name> #<id>]" with id being numeric.
+
+For example, reorder-tags foo bar, will ensure that a Subject containing
+both [foo #1] and [bar #2], the foo tag will appear befor the bar one.
+
+In case the main tag is not present, a new one is prepended with id 0.
+
