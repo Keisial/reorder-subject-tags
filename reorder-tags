@@ -6,6 +6,7 @@ PRIMARY="$1"
 SECONDARY="$2"
 
 sed '0,/^\r\?$/ { /^Subject:/I {
+	:a; $!N;s/\n[ \t]\+/ /;ta
 	/\['"$SECONDARY #"'[0-9]*\]/ {
 		/\['"$PRIMARY #"'[0-9]*\]/! {
 			s/:/: ['"$PRIMARY"' #0]/
@@ -14,4 +15,5 @@ sed '0,/^\r\?$/ { /^Subject:/I {
 			'"s/\(\[$SECONDARY #[0-9]*\]\)\(.*\?\)\(\[$PRIMARY #[0-9]*\]\)/\3\2\1/"'
 		}
 	}
+	P;D;
  } }'
