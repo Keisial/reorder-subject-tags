@@ -31,3 +31,6 @@ Subject: hello
 Subject: hello [foo #5] world [bar #2]"
 test_case "Subject: [bar
  #2][foo #5] test" "Subject: [foo #5][bar #2] test"
+test_case "Subject:
+ =?UTF-8?Q?=5Bbar_=2312=5D_=5Bfoo_=2350=5D_rfc2047?=" "Subject: =?UTF-8?Q?=5Bfoo_=2350=5D_=5Bbar_=2312=5D_rfc2047?="
+test_case "Subject: =?UTF-8?Q?=5Bbar #12=5D?= [foo #50]" "Subject: =?UTF-8?Q?[foo #50]?= =5Bbar #12=5D"  # Breaks if one tag is encoded but the other isn't
