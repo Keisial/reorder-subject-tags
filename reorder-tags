@@ -2,10 +2,21 @@
 
 set -eu
 
+FILTERS=""
+ENDFILTERS=""
+
+# Apply only when a *prior* header matches the given regex
+if [ "$1" = "--filter" ]; then
+ shift
+ FILTERS="$FILTERS $1,/^\r\?$/ {"
+ ENDFILTERS="$ENDFILTERS }"
+ shift
+fi
+
 PRIMARY="$1"
 SECONDARY="$2"
 
-sed '0,/^\r\?$/ { /^Subject:/I {
+sed "0,/^\r\?$/ { $FILTERS "'/^Subject:/I {
 	:a; $!N;s/\n[ \t]\+/ /;ta
 	/\(\[\|=5[Bb]\)'"$SECONDARY[ _]\+\(#\|=23\)"'[0-9]*\(\]\|=5[Dd]\)/ {
 		/\(\[\|=5[Bb]\)'"$PRIMARY[ _]\+\(#\|=23\)"'[0-9]*\(\]\|=5[Dd]\)/! {
@@ -16,4 +27,4 @@ sed '0,/^\r\?$/ { /^Subject:/I {
 		}
 	}
 	P;D;
- } }'
+ } }'"$ENDFILTERS"
