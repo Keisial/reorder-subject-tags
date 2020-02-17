@@ -6,12 +6,12 @@ FILTERS=""
 ENDFILTERS=""
 
 # Apply only when a *prior* header matches the given regex
-if [ "$1" = "--filter" ]; then
+while [ "$1" = "--filter" ]; do
  shift
  FILTERS="$FILTERS $1,/^\r\?$/ {"
  ENDFILTERS="$ENDFILTERS }"
  shift
-fi
+done
 
 PRIMARY="$1"
 SECONDARY="$2"

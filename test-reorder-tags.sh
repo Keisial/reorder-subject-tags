@@ -37,3 +37,4 @@ test_case "Subject: =?UTF-8?Q?=5Bbar #12=5D?= [foo #50]" "Subject: =?UTF-8?Q?[fo
 test_case $'From: joe@doe.com\nSubject: [bar #2][foo #5]' $'From: joe@doe.com\nSubject: [foo #5][bar #2]'
 test_case $'From: joe@doe.com\nSubject: [bar #2][foo #5]' $'From: joe@doe.com\nSubject: [foo #5][bar #2]' "--filter /From:.*@doe\.com/"  # Filter if sent from Doe
 test_case $'From: joe@doe.com\nSubject: [bar #2][foo #5]' $'From: joe@doe.com\nSubject: [bar #2][foo #5]' "--filter /From:.*@smith\.com/"  # But here we do not filter, as it doesn't come from Smith
+test_case $'From: joe@doe.com\nSubject: [bar #2][foo #5]' $'From: joe@doe.com\nSubject: [foo #5][bar #2]' "--filter /From:.*@doe\.com/ --filter /From:.*joe/"  # Double filter
