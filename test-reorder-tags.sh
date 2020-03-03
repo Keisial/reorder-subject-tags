@@ -19,6 +19,9 @@ test_case "Subject: [bar #12] hello world" "Subject: [foo #0] [bar #12] hello wo
 test_case "Subject: [bar #12] [foo #50] hello world" "Subject: [foo #50] [bar #12] hello world"
 test_case "Subject: [foo #5] [bar #2] hello world" "Subject: [foo #5] [bar #2] hello world"
 test_case "Subject: [bar #12] [baz #30] [foo #50] hello world" "Subject: [foo #50] [baz #30] [bar #12] hello world"
+test_case "Subject: [bar #0][bar #30] [foo #50] hello world" "Subject: [foo #50] [bar #30] hello world"
+test_case "Subject: [foo #000][bar #30] [foo #50] hello world" "Subject: [foo #50] [bar #30] hello world"
+test_case "Subject: [foo #000][bar #0][foo #50] hello world" "Subject: [foo #50] hello world"
 test_case "Subject: hello
  [bar #2]
  world [foo #5]" "Subject: hello [foo #5] world [bar #2]"
